@@ -5,8 +5,18 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializer import TaskSerializer, TableauSerializer
 from .models import Task, Tableau
+from rest_framework import viewsets
 
 # Create your views here.
+
+class TaskViewset(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+
+class TableauViewset(viewsets.ModelViewSet):
+    queryset = Tableau.objects.all()
+    serializer_class = TableauSerializer
 
 @api_view(['GET'])
 def apiOverview(request):
